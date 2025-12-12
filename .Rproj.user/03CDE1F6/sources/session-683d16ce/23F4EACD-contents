@@ -1,0 +1,120 @@
+---
+title: "ConRR R Markdown Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: spacelab #  (available: default, bootstrap, cerulean, cosmo, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, spacelab, united, and yeti)
+    highlight: tango # (available: default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, breezedark, and textmate)
+    code_download: true # show/hide code download button
+    code_folding: show # option to show/hide code chunks
+    toc: true # show/hide Table Of Contents
+    toc_float: true # show ToC all the time or only at top
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+if("librarian" %in% installed.packages()==FALSE) install.packages("librarian")
+librarian::shelf(knitr, prettydoc, ggplot2, cran_repo = 'https://cran.r-project.org')
+```
+
+# Main Heading
+
+This template should help you with the basics of R Markdown: text, code "chunks", in-line code, plots and tables. It is easy to make lists, for example
+
+-   Make a list
+-   Check it twice
+-   Find out who's naughty and nice
+-   Come to town
+
+Here is some text: just type the same way as you would type in Word. Directly below this text, there is a code "chunk", where you can type R code:
+
+```{r}
+# This is a chunk: your R code goes in here just like a regular R script:
+scores <- c(5, 3, 6, 8, 10)
+m <- mean(scores)
+m
+```
+
+## Sub-heading: chunk options
+
+By default, knitr will show both your code and the output in the resulting document. You can use chunk options to change this behaviour. They work like R command arguments. First, tell knitr to not show the code, by using `echo=FALSE`:
+
+```{r, echo=FALSE}
+scores <- c(5, 3, 6, 8, 10)
+the.mean <- mean(scores)
+the.mean
+```
+
+Second, tell knitr to not show the output, using `results='hide`:
+
+```{r,  results='hide'}
+scores <- c(5, 3, 6, 8, 10)
+the.mean <- mean(scores)
+the.mean
+```
+
+You can also tell knitr to not run the code at all, using `eval=FALSE`:
+
+```{r, eval=FALSE}
+scores10 <- c(5, 3, 6, 8, 10, 3, 6, 12, 4, 9)
+mean(scores10)
+```
+
+Instead of setting these options in every chunk, you can set options at the beginning that will then be in place for every chunk. We call this a "global" chunk option, and we do this in the very first chunk in this document where we set `echo=TRUE` using the line `knitr::opts_chunk$set(echo = TRUE)`.
+
+A useful aspect of R Markdown is that, in the text, you can use objects that you've created inside the chunks. For example, the mean of `scores` is `r the.mean`. You can even run little bits of code inside the text: the sum of the five scores is `r sum(scores)`, for example.
+
+## Sub-heading: plots
+
+You can run code that creates plots, and knitr will show them by default:
+
+```{r}
+myplot <- ggplot(data=diamonds, aes(x=cut, y=price, fill=color)) +
+  geom_bar(stat="identity")+
+  scale_fill_brewer(palette="Set3")
+myplot
+```
+
+### Sub-sub-heading: chunk options for plots
+
+There are also chunk options that let you alter your plot, such as specifying the dimensions:
+
+```{r, echo=FALSE, fig.width=9, fig.height=4}
+myplot
+```
+
+## Tables
+```{r}
+Chairman <- ggplot(data=mtcars,aes(x=at,y=mph,fill=(color)))
+```
+
+
+### kable: for basic tables
+
+The `kable` command is a fast way to create tables. Here is the simple output of R without using any commands:
+
+```{r}
+tab <- head(diamonds[, 1:7])
+tab
+```
+
+Now using `kable`:
+
+```{r}
+kable(tab)
+```
+
+The `kable` command has arguments for altering how the table looks, including changing the column names, alignment, captions, rounding, and more.
+
+```{r}
+better.colnames <- c("Carat", "Cut", "Colour", "Clarity", "Depth(%)", "Relative width", "Price($)")
+better.tab <- kable(tab,
+      col.names = better.colnames,
+      align = c("rcccrrr"),
+      caption = "My sensible caption")
+better.tab
+```
+
+More details on `kable` here: <https://bookdown.org/yihui/rmarkdown-cookbook/kable.html>

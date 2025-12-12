@@ -1,0 +1,35 @@
+"0","librarian::shelf(knitr, prettydoc, ggplot, cran_repo = 'https://cran.r-project.org')
+"
+"2","
+  These packages will be installed:
+
+  'ggplot'
+
+  It may take some time.
+"
+"2","stock(..., lib = lib, update_all = update_all, quiet = quiet, 里有警告:"
+"2","
+ "
+"2"," 
+  These packages failed to install:
+
+  'ggplot'
+
+  Check the spelling and capitalisation of the names.
+
+  Are they Bioconductor packages? If so, please install Bioconductor
+  (BiocManager and BiocBase).
+
+  Are they from GitHub? If so, please supply both the GitHub username
+  and package name, e.g. DesiQuintans/librarian
+"
+"2","librarian::shelf(knitr, prettydoc, ggplot, cran_repo = ""https://cran.r-project.org"")里有警告:"
+"2","
+ "
+"2"," 
+  These packages are not installed, so they were not attached:
+
+  'ggplot'
+
+  Did they fail to install? Are they spelled correctly?
+"

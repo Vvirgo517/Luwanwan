@@ -1,0 +1,3 @@
+git init
+Sgit branch -M main
+git remote add origin https://github.com/Vvirgo517/Luwanwan.git
