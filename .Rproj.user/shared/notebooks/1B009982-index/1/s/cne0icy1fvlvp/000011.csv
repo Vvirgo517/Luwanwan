@@ -1,5 +1,0 @@
-"0","Chairman <- ggplot(data=mtcars,aes(x=at,y=mph,fill=(color)))
-"
-"2","错误于ggplot(data = mtcars, aes(x = at, y = mph, fill = (color))): 
-  没有""ggplot""这个函数
-"
